@@ -104,7 +104,7 @@ const form=useRef()
           <span className="hi">Hi there</span>
           <h3>I am <span>Kotni Jagadeesh</span></h3>
           <p className="info">I am a FullStack Developer</p>
-          <p class="text">Seeking excellence in the chosen professional field through self-motivation, hard work and utilizing core skillsrequired to
+          <p class="text">Seeking excellence in the chosen professional field through self-motivation, hard work and utilizing core skills required to
           effectively deliver the requirements of the position.</p>
           <a href="#about" className="btn">about me</a>
         </div>
