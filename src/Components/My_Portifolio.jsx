@@ -2,7 +2,7 @@ import React, { useEffect, useRef} from 'react';
 import '../Css/My_portifolio.css' // Assuming you create a MyPortfolio.css file for styles
 import Image1 from '../assets/Images/Image35.jpg';
 import Image2 from '../assets/Images/Image18.jpg';
-import Resume from '../assets/Images/JagadeeshKotnis Updated Resume.pdf';
+import Resume from '../assets/Images/JagadeeshKotnis Git Resume.pdf';
 import Projectimg from '../assets/Images/projectimage.jpg';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import emailjs from 'emailjs-com';
