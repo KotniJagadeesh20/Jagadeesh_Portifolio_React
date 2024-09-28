@@ -138,7 +138,7 @@ const form=useRef()
                 <p><span> Country :</span> India</p>
               </div>
             </div>
-            <a href={Resume} className="btn" download>Download CV</a>
+            <a href={Resume} className="btn" download>Download CV</a> &nbsp
             <a href="#contact" className="btn">Hire me</a>
           </div>
         </div>
