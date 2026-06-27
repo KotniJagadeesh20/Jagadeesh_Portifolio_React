@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kotnijagadeesh20.github.io/Jagadeesh_Portifolio_React/",
+  "homepage": "https://kotnijagadeesh20.github.io/Jagadeesh_Pnpm run deployortifolio_React/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
