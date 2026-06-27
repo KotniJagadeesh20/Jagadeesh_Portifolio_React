@@ -93,11 +93,32 @@ const My_Portfolio = () => {
         </nav>
 
         <div className="follow">
-          <a href="https://www.facebook.com/jagadeesh.kotni.9?mibextid=ZbWKwL" className="fab fa-facebook-f"></a>
-          <a href="https://twitter.com/jagadeesh_kotni" className="fab fa-twitter"></a>
-          <a href="https://www.instagram.com/jagadeesh_kotni?igsh=NXF5ZGt5OXljaGYw" className="fab fa-instagram"></a>
-          <a href="https://www.linkedin.com/in/jagadeesh-kotni-194a6b260?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="fab fa-linkedin"></a>
-        </div>
+  <a
+    href="https://github.com/KotniJagadeesh20"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="fab fa-github"
+  ></a>
+
+  <a
+    href="https://www.linkedin.com/in/jagadeesh-kotni-194a6b260"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="fab fa-linkedin"
+  ></a>
+
+  <a
+    href="https://www.instagram.com/jagadeesh_kotni"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="fab fa-instagram"
+  ></a>
+
+  <a
+    href="mailto:jagadeeshkotni20@gmail.com"
+    className="fas fa-envelope"
+  ></a>
+</div>
       </header>
 
       {/* Home section */}
