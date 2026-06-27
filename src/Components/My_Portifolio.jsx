@@ -452,10 +452,10 @@ const My_Portfolio = () => {
             <p>+91 9347759066</p>
           </div>
           <div className="icons">
-            <i className="fas fa-map-marker-alt"></i>
-            <h3>My address</h3>
-            <p>5-66, Deevanguls street, Parapuram-532455</p>
-            <p>India</p>
+            <p>
+  <i className="fas fa-map-marker-alt"></i>
+  <span>Madhapur, Hyderabad, Telangana, India</span>
+</p>
           </div>
         </div>
 
@@ -469,13 +469,13 @@ const My_Portfolio = () => {
             <input type="submit" className="btn" value="Send Email" />
           </form>
           <iframe
-            className="map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241693.00014757004!2d83.64648666446728!3d18.822509666845626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3c8eddc104255f%3A0xddf2ee22b802872c!2sKotturu%2C%20Andhra%20Pradesh%20532455!5e0!3m2!1sen!2sin!4v1707908527918!5m2!1sen!2sin"
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Location Map"
-          ></iframe>
+  className="map"
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30449.884486918967!2d78.37104605226682!3d17.44843599072246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9158f201b205%3A0x11bbe7be7792411b!2sMadhapur%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1782556916109!5m2!1sen!2sin"
+  allowFullScreen
+  loading="lazy"
+  referrerPolicy="strict-origin-when-cross-origin"
+  title="Madhapur, Hyderabad Location"
+></iframe>
         </div>
       </section>
     </div>
