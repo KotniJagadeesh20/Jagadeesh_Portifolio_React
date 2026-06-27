@@ -452,10 +452,10 @@ const My_Portfolio = () => {
             <p>+91 9347759066</p>
           </div>
           <div className="icons">
-            <p>
-  <i className="fas fa-map-marker-alt"></i>
-  <span>Madhapur, Hyderabad, Telangana, India</span>
-</p>
+            <i className="fas fa-map-marker-alt"></i>
+            <h3>My address</h3>
+            <p>Madhapur, Hyderabad, Telangana, India</p>
+            <p>India</p>
           </div>
         </div>
 
