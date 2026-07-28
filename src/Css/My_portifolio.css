@@ -386,7 +386,8 @@ header .follow a:hover{
 }
 .portifolio .box-container .box{
     flex: 1 1 30rem;
-    height: 25em;
+    height: 32rem;
+    min-height: 32rem;
     position: relative;
     overflow: hidden;
     border: 1rem solid #fff;
@@ -401,10 +402,11 @@ header .follow a:hover{
     border-radius: .5rem;
     position: relative;
     z-index: 1;
+    display: block;
 }
 .portifolio .box-container .box:hover img{
-    height: 80%;
-    width: 80%;
+    height: 100%;
+    width: 100%;
 }
 .portifolio .box-container .box h3{
     position: absolute;
@@ -413,6 +415,7 @@ header .follow a:hover{
     font-size: 2rem;
     color: #333;
     text-transform: uppercase;
+    z-index: 2;
 }
 .portifolio .box-container .box p{
     position: absolute;
@@ -426,8 +429,10 @@ header .follow a:hover{
     position: absolute;
     top: 1rem;
     right: 1rem;
+    z-index: 2;
 }
-.portifolio .box-container .box .icons a{
+.portifolio .box-container .box .icons a,
+.portifolio .box-container .box .icons button{
     display: block;
     height: 4rem;
     width: 4rem;
@@ -438,10 +443,39 @@ header .follow a:hover{
     line-height: 4rem;
     text-align: center;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
-.portifolio .box-container .box .icons a:hover{
+.portifolio .box-container .box .icons a:hover,
+.portifolio .box-container .box .icons button:hover{
     background-color: #e38528;
     color: #fff;
+}
+.portifolio .box-container .box .project-description{
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: -12rem;
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease;
+    z-index: 3;
+}
+.portifolio .box-container .box .project-description.active{
+    opacity: 1;
+    visibility: visible;
+    bottom: 1rem;
+}
+.portifolio .box-container .box .project-description p{
+    position: static;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    text-transform: none;
+    color: #444;
 }
 .contact .icons-container{
     display: flex;

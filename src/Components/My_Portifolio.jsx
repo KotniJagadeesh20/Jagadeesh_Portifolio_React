@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../Css/My_portifolio.css';
 import Image1 from '../assets/Images/Image35.jpg';
 import Image2 from '../assets/Images/Image18.jpg';
@@ -46,6 +46,28 @@ const My_Portfolio = () => {
   }, []);
 
   const form = useRef();
+  const [activeProject, setActiveProject] = useState(null);
+
+  const projects = [
+    {
+      title: 'Sanchari Travel Hub',
+      repoUrl: 'https://github.com/KotniJagadeesh20/sanchari-travel-platform.git',
+      description:
+        'Sanchari Travel Hub is a full-stack travel marketplace built with a scalable Spring Boot microservices architecture, designed to deliver a seamless travel experience through a single platform. It brings together destination discovery, travel packages, bus booking, ride sharing, and creator-managed travel experiences while demonstrating modern backend engineering practices.',
+    },
+    {
+      title: 'Learn Creator Kit',
+      repoUrl: 'https://github.com/KotniJagadeesh20/learner-creator-kit-baackend.git',
+      description:
+        'Learn Creator Kit is a creator-driven learning platform that combines an online course marketplace with a collaborative social learning community. The platform enables creators to publish and monetize courses, while learners can discover educational content, enroll in courses, track learning progress, and actively engage in discussions through a community feed.',
+    },
+    {
+      title: 'Job Finder Platform',
+      repoUrl: 'https://github.com/KotniJagadeesh20/Job-Finder.git',
+      description:
+        'Job Finder Platform is a job aggregation application that helps job seekers discover opportunities from multiple sources through automated data collection and intelligent search capabilities. The platform simplifies the job search process by consolidating listings into a single interface, allowing users to efficiently explore relevant openings based on their preferences.',
+    },
+  ];
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -284,7 +306,7 @@ const My_Portfolio = () => {
               <h3>Software Engineer</h3>
               <h4>Picktime</h4>
               <p>
-                Working as a Software Engineer, developing scalable backend applications and
+          Working as a Software Engineer, developing scalable backend applications and
                 enterprise solutions using Java and Spring Boot.
               </p>
               <ul>
@@ -419,38 +441,32 @@ const My_Portfolio = () => {
       </section>
 
       {/* Portfolio section */}
-      <section className="portifolio" id="portifolio">
+      <section className="portifolio" id="portfolio">
         <h1 className="heading">
           <span>My</span> Portfolio
         </h1>
         <div className="box-container">
-          <div className="box">
-            <img src={Projectimg} alt="" />
-            <h3>Bus Ticket Booking</h3>
-            <div className="icons">
-              <a href="https://github.com/KotniJagadeesh20/BusTicketBooking.git" target="_blank" rel="noreferrer" className="fas fa-link"></a>
-              <a href="#" className="fas fa-share"></a>
-              <a href="#" className="fas fa-search"></a>
+          {projects.map((project) => (
+            <div className="box" key={project.title}>
+              <img src={Projectimg} alt={project.title} />
+              <h3>{project.title}</h3>
+              <div className="icons">
+                <a href={project.repoUrl} target="_blank" rel="noreferrer" className="fas fa-link"></a>
+                <a href="#" className="fas fa-share"></a>
+                <button
+                  type="button"
+                  className="fas fa-search"
+                  aria-label={`Show details for ${project.title}`}
+                  onClick={() =>
+                    setActiveProject((current) => (current === project.title ? null : project.title))
+                  }
+                ></button>
+              </div>
+              <div className={`project-description ${activeProject === project.title ? 'active' : ''}`}>
+                <p>{project.description}</p>
+              </div>
             </div>
-          </div>
-          <div className="box">
-            <img src={Projectimg} alt="" />
-            <h3>RealEstate Application</h3>
-            <div className="icons">
-              <a href="https://github.com/Prajwal267/realestateapplication.git" target="_blank" rel="noreferrer" className="fas fa-link"></a>
-              <a href="#" className="fas fa-share"></a>
-              <a href="#" className="fas fa-search"></a>
-            </div>
-          </div>
-          <div className="box">
-            <img src={Projectimg} alt="" />
-            <h3>Music Player Backend</h3>
-            <div className="icons">
-              <a href="https://github.com/KotniJagadeesh20/MusicPlayer_Backend.git" target="_blank" rel="noreferrer" className="fas fa-link"></a>
-              <a href="#" className="fas fa-share"></a>
-              <a href="#" className="fas fa-search"></a>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
