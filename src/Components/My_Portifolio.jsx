@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import '../Css/My_portifolio.css';
 import Image1 from '../assets/Images/Image35.jpg';
 import Image2 from '../assets/Images/Image18.jpg';
@@ -46,26 +46,40 @@ const My_Portfolio = () => {
   }, []);
 
   const form = useRef();
-  const [activeProject, setActiveProject] = useState(null);
 
   const projects = [
     {
+      number: '01',
+      category: 'Travel & Hospitality',
+      icon: 'fas fa-plane',
       title: 'Sanchari Travel Hub',
       repoUrl: 'https://github.com/KotniJagadeesh20/sanchari-travel-platform.git',
+      imageAlt: 'Sanchari Travel Hub project preview',
+      tags: ['Spring Boot', 'Microservices', 'MySQL'],
       description:
-        'Sanchari Travel Hub is a full-stack travel marketplace built with a scalable Spring Boot microservices architecture, designed to deliver a seamless travel experience through a single platform. It brings together destination discovery, travel packages, bus booking, ride sharing, and creator-managed travel experiences while demonstrating modern backend engineering practices.',
+        'A full-stack travel marketplace that brings destination discovery, travel packages, bus booking, ride sharing, and creator-managed travel experiences into one platform.',
     },
     {
+      number: '02',
+      category: 'EdTech & Creator Tools',
+      icon: 'fas fa-book-open',
       title: 'Learn Creator Kit',
       repoUrl: 'https://github.com/KotniJagadeesh20/learner-creator-kit-baackend.git',
+      imageAlt: 'Learn Creator Kit project preview',
+      tags: ['Course marketplace', 'Social learning','AI Tutor'],
       description:
-        'Learn Creator Kit is a creator-driven learning platform that combines an online course marketplace with a collaborative social learning community. The platform enables creators to publish and monetize courses, while learners can discover educational content, enroll in courses, track learning progress, and actively engage in discussions through a community feed.',
+        'A creator-driven learning platform where creators publish and monetize courses while learners discover content, enroll, track progress, and join community discussions.',
     },
     {
+      number: '03',
+      category: 'Jobs & Recruitment',
+      icon: 'fas fa-briefcase',
       title: 'Job Finder Platform',
       repoUrl: 'https://github.com/KotniJagadeesh20/Job-Finder.git',
+      imageAlt: 'Job Finder Platform project preview',
+      tags: ['Automated collection', 'Intelligent search'],
       description:
-        'Job Finder Platform is a job aggregation application that helps job seekers discover opportunities from multiple sources through automated data collection and intelligent search capabilities. The platform simplifies the job search process by consolidating listings into a single interface, allowing users to efficiently explore relevant openings based on their preferences.',
+        'A job aggregation application that collects opportunities from multiple sources and brings them into one searchable interface for faster discovery.',
     },
   ];
 
@@ -179,7 +193,7 @@ const My_Portfolio = () => {
               Backend Development.
             </h3>
             <p>
-              Hi, I'm Kotni Jagadeesh, a Junior Software Engineer with a strong interest in backend
+              Hi, I&apos;m Kotni Jagadeesh, a Junior Software Engineer with a strong interest in backend
               engineering and distributed systems. I specialize in building scalable applications
               using Java, Spring Boot, REST APIs, MySQL, and Spring Security. I enjoy designing clean
               software architectures, developing secure backend services, and continuously learning
@@ -442,30 +456,33 @@ const My_Portfolio = () => {
 
       {/* Portfolio section */}
       <section className="portifolio" id="portfolio">
-        <h1 className="heading">
-          <span>My</span> Portfolio
-        </h1>
-        <div className="box-container">
+        <div className="portfolio-intro">
+          <p className="portfolio-kicker"><span></span> Selected work <span></span></p>
+          <h1>Projects that turn ideas into products</h1>
+          <p className="portfolio-subtitle">
+            A showcase of real-world applications I have built, solving meaningful problems with
+            clean design and scalable technology.
+          </p>
+        </div>
+        <div className="portfolio-grid">
           {projects.map((project) => (
-            <div className="box" key={project.title}>
-              <img src={Projectimg} alt={project.title} />
-              <h3>{project.title}</h3>
-              <div className="icons">
-                <a href={project.repoUrl} target="_blank" rel="noreferrer" className="fas fa-link"></a>
-                <a href="#" className="fas fa-share"></a>
-                <button
-                  type="button"
-                  className="fas fa-search"
-                  aria-label={`Show details for ${project.title}`}
-                  onClick={() =>
-                    setActiveProject((current) => (current === project.title ? null : project.title))
-                  }
-                ></button>
+            <article className="project-card" key={project.title}>
+              <div className="project-image-wrap">
+                <span className="project-number">{project.number}<i></i></span>
+                <img src={Projectimg} alt={project.imageAlt} />
               </div>
-              <div className={`project-description ${activeProject === project.title ? 'active' : ''}`}>
-                <p>{project.description}</p>
+              <div className="project-content">
+                <p className="project-category"><i className={project.icon}></i>{project.category}</p>
+                <h2>{project.title}</h2>
+                <p className="project-summary">{project.description}</p>
+                <div className="project-tags">
+                  {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                </div>
+                <a className="project-link" href={project.repoUrl} target="_blank" rel="noreferrer">
+                  <i className="fab fa-github"></i> View on GitHub
+                </a>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </section>
