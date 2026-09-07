@@ -1,539 +1,89 @@
-import { useEffect, useRef } from 'react';
+import { useRef, useState } from 'react';
 import '../Css/My_portifolio.css';
-import Image1 from '../assets/Images/Image35.jpg';
-import Image2 from '../assets/Images/Image18.jpg';
-import Resume from '../assets/Images/JagadeeshKotniResume.pdf';
-import Projectimg from '../assets/Images/projectimage.jpg';
+import portrait from '../assets/Images/Image35.jpg';
+import resume from '../assets/Images/JagadeeshKotniResume.pdf';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import emailjs from 'emailjs-com';
 
-const My_Portfolio = () => {
-  useEffect(() => {
-    const menu = document.querySelector('#menu-bars');
-    const header = document.querySelector('header');
-
-    menu.onclick = () => {
-      menu.classList.toggle('fa-times');
-      header.classList.toggle('active');
-    };
-
-    window.onscroll = () => {
-      menu.classList.remove('fa-times');
-      header.classList.remove('active');
-    };
-
-    const cursor1 = document.querySelector('.cursor-1');
-    const cursor2 = document.querySelector('.cursor-2');
-
-    window.onmousemove = (e) => {
-      cursor1.style.top = `${e.pageY}px`;
-      cursor1.style.left = `${e.pageX}px`;
-      cursor2.style.top = `${e.pageY}px`;
-      cursor2.style.left = `${e.pageX}px`;
-    };
-
-    document.querySelectorAll('a').forEach((link) => {
-      link.onmouseenter = () => {
-        cursor1.classList.add('active');
-        cursor2.classList.add('active');
-      };
-
-      link.onmouseleave = () => {
-        cursor1.classList.remove('active');
-        cursor2.classList.remove('active');
-      };
-    });
-  }, []);
-
-  const form = useRef();
-
-  const projects = [
-    {
-      number: '01',
-      category: 'Travel & Hospitality',
-      icon: 'fas fa-plane',
-      title: 'Sanchari Travel Hub',
-      repoUrl: 'https://github.com/KotniJagadeesh20/sanchari-travel-platform.git',
-      imageAlt: 'Sanchari Travel Hub project preview',
-      tags: ['Spring Boot', 'Microservices', 'MySQL'],
-      description:
-        'A full-stack travel marketplace that brings destination discovery, travel packages, bus booking, ride sharing, and creator-managed travel experiences into one platform.',
-    },
-    {
-      number: '02',
-      category: 'EdTech & Creator Tools',
-      icon: 'fas fa-book-open',
-      title: 'Learn Creator Kit',
-      repoUrl: 'https://github.com/KotniJagadeesh20/learner-creator-kit-baackend.git',
-      imageAlt: 'Learn Creator Kit project preview',
-      tags: ['Course marketplace', 'Social learning','AI Tutor'],
-      description:
-        'A creator-driven learning platform where creators publish and monetize courses while learners discover content, enroll, track progress, and join community discussions.',
-    },
-    {
-      number: '03',
-      category: 'Jobs & Recruitment',
-      icon: 'fas fa-briefcase',
-      title: 'Job Finder Platform',
-      repoUrl: 'https://github.com/KotniJagadeesh20/Job-Finder.git',
-      imageAlt: 'Job Finder Platform project preview',
-      tags: ['Automated collection', 'Intelligent search'],
-      description:
-        'A job aggregation application that collects opportunities from multiple sources and brings them into one searchable interface for faster discovery.',
-    },
-  ];
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        'service_5ds46sm',
-        'template_d7i8y6b',
-        form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          console.log('SUCCESS!');
-          alert('Email sent Successfully');
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-          alert('Failed to send Email..! Try again');
-        }
-      );
-    e.target.reset();
-  };
-
-  return (
-    <div>
-      <div className="cursor-1"></div>
-      <div className="cursor-2"></div>
-      <div id="menu-bars" className="fas fa-bars"></div>
-
-      {/* Header section */}
-      <header>
-        <a href="#" className="logo">
-          Kotni<span> Jagadeesh</span>
-        </a>
-
-        <nav className="navbar">
-          <a href="#home">Home</a>
-          <a href="#about">About me</a>
-          <a href="#services">Services</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div className="follow">
-  <a
-    href="https://github.com/KotniJagadeesh20"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fab fa-github"
-  ></a>
-
-  <a
-    href="https://www.linkedin.com/in/jagadeesh-kotni-194a6b260"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fab fa-linkedin"
-  ></a>
-
-  <a
-    href="https://www.instagram.com/jagadeesh_kotni"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fab fa-instagram"
-  ></a>
-
-  <a
-    href="mailto:jagadeeshkotni20@gmail.com"
-    className="fas fa-envelope"
-  ></a>
-</div>
-      </header>
-
-      {/* Home section */}
-      <section className="home" id="home">
-        <div className="content">
-          <span className="hi">Hi there</span>
-          <h3>
-            I am <span>Kotni Jagadeesh</span>
-          </h3>
-          <p className="info">Software Engineer | Java &amp; Spring Boot Developer</p>
-          <p className="text">
-            Seeking excellence in the chosen professional field through self-motivation, hard work and
-            utilizing core skills required to effectively deliver the requirements of the position.
-          </p>
-          <a href="#about" className="btn">
-            about me
-          </a>
-        </div>
-        <div className="image">
-          <img src={Image1} alt="Jagadeesh image" />
-        </div>
-      </section>
-
-      {/* About section */}
-      <section className="about" id="about">
-        <h1 className="heading">
-          about<span>me</span>
-        </h1>
-        <div className="row-1">
-          <div className="image">
-            <img src={Image2} alt="Jagadeesh image" />
-          </div>
-          <div className="content">
-            <h3>
-              My name is Kotni Jagadeesh &amp; I am a Junior Software Engineer specializing in
-              Backend Development.
-            </h3>
-            <p>
-              Hi, I&apos;m Kotni Jagadeesh, a Junior Software Engineer with a strong interest in backend
-              engineering and distributed systems. I specialize in building scalable applications
-              using Java, Spring Boot, REST APIs, MySQL, and Spring Security. I enjoy designing clean
-              software architectures, developing secure backend services, and continuously learning
-              modern technologies such as Microservices, Docker, AWS, System Design, and CI/CD. I
-              believe in writing maintainable, production-ready code and solving real-world problems
-              through software. Currently, I am expanding my expertise in cloud technologies and
-              large-scale system design while building projects that reflect industry best practices.
-            </p>
-            <div className="box-container">
-              <div className="box">
-                <p>
-                  <span>Age :</span> 24
-                </p>
-                <p>
-                  <span>Gender :</span> Male
-                </p>
-                <p>
-                  <span>Language :</span> English, Telugu
-                </p>
-                <p>
-                  <span>Work :</span> Software Engineer
-                </p>
-              </div>
-              <div className="box">
-                <p>
-                  <span>Phone :</span> +91 6303094325
-                </p>
-                <p>
-                  <span>Email :</span> jagadeeshkotni20@gmail.com
-                </p>
-                <p>
-                  <span>Country :</span> India
-                </p>
-              </div>
-            </div>
-            <a href={Resume} className="btn" download>
-              Download CV
-            </a>
-            &nbsp;&nbsp;
-            <a href="#contact" className="btn">
-              Hire me
-            </a>
-          </div>
-        </div>
-
-        <h1 className="heading">
-          <span>My</span> Skills
-        </h1>
-
-        <div className="skills-container">
-          <div className="skill-card">
-            <h3>Languages</h3>
-            <div className="skill-tags">
-              <span>Java</span>
-              <span>SQL</span>
-              <span>JavaScript</span>
-            </div>
-          </div>
-
-          <div className="skill-card">
-            <h3>Backend</h3>
-            <div className="skill-tags">
-              <span>Spring Boot</span>
-              <span>Spring MVC</span>
-              <span>Spring Security</span>
-              <span>REST APIs</span>
-              <span>Hibernate</span>
-              <span>JPA</span>
-              <span>JWT Authentication</span>
-            </div>
-          </div>
-
-          <div className="skill-card">
-            <h3>Database</h3>
-            <div className="skill-tags">
-              <span>MySQL</span>
-            </div>
-          </div>
-
-          <div className="skill-card">
-            <h3>Cloud &amp; DevOps</h3>
-            <div className="skill-tags">
-              <span>AWS</span>
-              <span>Docker</span>
-              <span>Git</span>
-              <span>GitHub</span>
-            </div>
-          </div>
-
-          <div className="skill-card">
-            <h3>Architecture &amp; Concepts</h3>
-            <div className="skill-tags">
-              <span>Microservices</span>
-              <span>System Design</span>
-              <span>OOP</span>
-              <span>Design Patterns</span>
-              <span>Data Structures</span>
-              <span>Algorithms</span>
-              <span>MVC Architecture</span>
-            </div>
-          </div>
-          <div className="skill-card">
-            <h3>AI</h3>
-            <div className="skill-tags">
-              <span>Rag</span>
-              <span>Mcp</span>
-            </div>
-          </div>
-        </div>
-
-       
-      </section>
-
-      {/* Experience section */}
-      <section className="experience" id="experience">
-        <h1 className="heading">
-          <span>My</span> Experience
-        </h1>
-
-        <div className="box-container">
-          <div className="box">
-            <div className="content">
-              <span>July 2025 - Present</span>
-              <h3>Software Engineer</h3>
-              <h4>Picktime</h4>
-              <p>
-          Working as a Software Engineer, developing scalable backend applications and
-                enterprise solutions using Java and Spring Boot.
-              </p>
-              <ul>
-                <li>Develop and maintain backend services using Java and Spring Boot.</li>
-                <li>Design and implement RESTful APIs for business applications.</li>
-                <li>Build database-driven applications using MySQL, JPA, and Hibernate.</li>
-                <li>Participate in debugging, testing, and production issue resolution.</li>
-                <li>
-                  Collaborate with cross-functional teams to deliver new features and product
-                  enhancements.
-                </li>
-                <li>
-                  Follow software engineering best practices including code reviews, Git workflows,
-                  and clean architecture.
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="box">
-            <div className="content">
-              <span>December 2024 - June 2025</span>
-              <h3>Software Engineer Intern</h3>
-              <h4>Picktime</h4>
-              <p>
-                Started my professional journey as a Software Engineer Intern, contributing to
-                backend development while learning enterprise software development practices.
-              </p>
-              <ul>
-                <li>Assisted in backend application development using Java.</li>
-                <li>Implemented bug fixes and feature enhancements.</li>
-                <li>Worked with Spring Boot-based applications.</li>
-                <li>Collaborated with senior engineers to understand software architecture.</li>
-                <li>
-                  Learned version control, debugging techniques, and development workflows.
-                </li>
-                <li>
-                  Contributed to delivering reliable and maintainable backend features.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services section */}
-      <section className="services" id="services">
-        <h1 className="heading">
-          <span>What</span> I Build
-        </h1>
-        <div className="box-container">
-          <div className="box">
-            <i className="fas fa-server"></i>
-            <h3>Backend Development</h3>
-            <p>
-              Developing scalable backend applications using Java, Spring Boot, Spring MVC, and
-              layered architecture with clean, maintainable code.
-            </p>
-          </div>
-          <div className="box">
-            <i className="fas fa-network-wired"></i>
-            <h3>REST API Development</h3>
-            <p>
-              Designing and developing secure RESTful APIs with proper validation, exception
-              handling, and seamless frontend-backend integration.
-            </p>
-          </div>
-          <div className="box">
-            <i className="fas fa-user-shield"></i>
-            <h3>Authentication &amp; Security</h3>
-            <p>
-              Implementing secure authentication and authorization using Spring Security, JWT,
-              role-based access control, and password encryption.
-            </p>
-          </div>
-          <div className="box">
-            <i className="fas fa-robot"></i>
-            <h3>AI Integrations (MCP &amp; RAG)</h3>
-            <p>
-              Building AI-powered applications using the Model Context Protocol (MCP) and
-              Retrieval-Augmented Generation (RAG) to connect intelligent assistants with external
-              tools and knowledge sources.
-            </p>
-          </div>
-          <div className="box">
-            <i className="fas fa-project-diagram"></i>
-            <h3>Microservices &amp; System Design</h3>
-            <p>
-              Learning and building distributed systems, scalable microservice architectures,
-              event-driven applications, and modern backend design patterns.
-            </p>
-          </div>
-          <div className="box">
-            <i className="fas fa-cloud"></i>
-            <h3>Cloud &amp; DevOps</h3>
-            <p>
-              Working with AWS, Docker, Git, GitHub, and CI/CD concepts to build, deploy, and
-              maintain modern cloud-ready applications.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Education section */}
-      <section className="education" id="education">
-        <h1 className="heading">
-          <span>My</span> Education
-        </h1>
-        <div className="box-container">
-          <div className="box">
-            <div className="content">
-              <span>2016-2017</span>
-              <h3>Holy-cross English medium school</h3>
-              <h3>CGPA : 9.5</h3>
-            </div>
-          </div>
-          <div className="box">
-            <div className="content">
-              <span>2018-2019</span>
-              <h3>Gayatri Junior college</h3>
-              <h3>CGPA : 9.88</h3>
-            </div>
-          </div>
-          <div className="box">
-            <div className="content">
-              <span>2019-2023</span>
-              <h3>University college of Engineering Narasaraopet</h3>
-              <h3>CGPA : 6.75</h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio section */}
-      <section className="portifolio" id="portfolio">
-        <div className="portfolio-intro">
-          <p className="portfolio-kicker"><span></span> Selected work <span></span></p>
-          <h1>Projects that turn ideas into products</h1>
-          <p className="portfolio-subtitle">
-            A showcase of real-world applications I have built, solving meaningful problems with
-            clean design and scalable technology.
-          </p>
-        </div>
-        <div className="portfolio-grid">
-          {projects.map((project) => (
-            <article className="project-card" key={project.title}>
-              <div className="project-image-wrap">
-                <span className="project-number">{project.number}<i></i></span>
-                <img src={Projectimg} alt={project.imageAlt} />
-              </div>
-              <div className="project-content">
-                <p className="project-category"><i className={project.icon}></i>{project.category}</p>
-                <h2>{project.title}</h2>
-                <p className="project-summary">{project.description}</p>
-                <div className="project-tags">
-                  {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
-                </div>
-                <a className="project-link" href={project.repoUrl} target="_blank" rel="noreferrer">
-                  <i className="fab fa-github"></i> View on GitHub
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact section */}
-      <section className="contact" id="contact">
-        <h1 className="heading">
-          <span>contact</span> me
-        </h1>
-        <div className="icons-container">
-          <div className="icons">
-            <i className="fas fa-envelope"></i>
-            <h3>My email</h3>
-            <p>jagadeeshkotni20@gmail.com</p>
-            <p>jagadeeshkotni04@gmail.com</p>
-          </div>
-          <div className="icons">
-            <i className="fas fa-phone"></i>
-            <h3>My Phone</h3>
-            <p>+91 6303094325</p>
-            <p>+91 9347759066</p>
-          </div>
-          <div className="icons">
-            <i className="fas fa-map-marker-alt"></i>
-            <h3>My address</h3>
-            <p>Madhapur, Hyderabad, Telangana, India</p>
-            <p>India</p>
-          </div>
-        </div>
-
-        <div className="row">
-          <form ref={form} onSubmit={sendEmail} autoComplete="off">
-            <input type="text" placeholder="Subject" name="Subject" className="box" />
-            <input type="text" placeholder="Name" name="Name" className="box" />
-            <input type="email" placeholder="E-mail" name="Email" className="box" />
-            <input type="number" placeholder="Number" name="Number" className="box" />
-            <textarea placeholder="message" name="Message" cols="30" rows="30"></textarea>
-            <input type="submit" className="btn" value="Send Email" />
-          </form>
-          <iframe
-  className="map"
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30449.884486918967!2d78.37104605226682!3d17.44843599072246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9158f201b205%3A0x11bbe7be7792411b!2sMadhapur%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1782556916109!5m2!1sen!2sin"
-  allowFullScreen
-  loading="lazy"
-  referrerPolicy="strict-origin-when-cross-origin"
-  title="Madhapur, Hyderabad Location"
-></iframe>
-        </div>
-      </section>
-    </div>
-  );
+const skills = {
+  Languages: [['fab fa-java', 'Java'], ['fas fa-database', 'SQL'], ['fab fa-js', 'JavaScript']],
+  Backend: [['fas fa-leaf', 'Spring Boot'], ['fas fa-leaf', 'Spring MVC'], ['fas fa-shield-halved', 'Spring Security'], ['fas fa-gear', 'REST APIs'], ['fas fa-gem', 'Hibernate'], ['fas fa-database', 'JPA'], ['fas fa-asterisk', 'JWT']],
+  Database: [['fas fa-database', 'MySQL']],
+  'Cloud & Tools': [['fab fa-aws', 'AWS'], ['fab fa-docker', 'Docker'], ['fab fa-git-alt', 'Git'], ['fab fa-github', 'GitHub']],
+  Architecture: [['fas fa-cube', 'Microservices'], ['fas fa-diagram-project', 'System Design'], ['fas fa-layer-group', 'OOP'], ['fas fa-puzzle-piece', 'Design Patterns'], ['fas fa-share-nodes', 'Data Structures'], ['fas fa-triangle-exclamation', 'Algorithms'], ['fas fa-table-cells-large', 'MVC']],
+  AI: [['fas fa-brain', 'RAG'], ['fas fa-wand-magic-sparkles', 'MCP']],
 };
 
-export default My_Portfolio;
+const services = [
+  ['fas fa-code', 'Backend Development', 'Scalable and maintainable backend systems'],
+  ['fas fa-gear', 'REST APIs', 'Design and develop robust RESTful APIs'],
+  ['fas fa-shield-halved', 'Authentication & Security', 'Secure applications with industry best practices'],
+  ['fas fa-microchip', 'AI Integrations', 'Build with RAG, MCP and modern AI tools'],
+  ['fas fa-cube', 'Microservices & System Design', 'Modular, scalable architectures'],
+  ['fas fa-cloud', 'Cloud & DevOps', 'Deploy and manage applications on AWS with Docker'],
+];
+
+const projects = [
+  { title: 'Sanchari Travel Hub', visual: 'travel', words: ['Explore', 'Plan', 'Travel'], description: 'A Spring Boot microservices travel marketplace for packages, bus bookings, ride sharing and destination discovery.', tags: ['Java', 'Spring Boot', 'Microservices'], url: 'https://github.com/KotniJagadeesh20/sanchari-travel-platform' },
+  { title: 'Learn Creator Kit', visual: 'learn', words: ['Create', 'Share', 'Learn'], description: 'A course marketplace and social learning community for creators and learners.', tags: ['Courses', 'Community', 'Progress tracking'], url: 'https://github.com/KotniJagadeesh20/learner-creator-kit-baackend' },
+  { title: 'Job Finder Platform', visual: 'jobs', words: ['Find', 'Apply', 'Build your future'], description: 'Aggregates job listings from multiple sources with automated collection and intelligent search.', tags: ['Job aggregation', 'Automation', 'Search'], url: 'https://github.com/KotniJagadeesh20/Job-Finder' },
+];
+
+const MyPortfolio = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const form = useRef();
+  const sendEmail = (event) => {
+    event.preventDefault();
+    emailjs.sendForm('service_5ds46sm', 'template_d7i8y6b', form.current, import.meta.env.VITE_EMAILJS_PUBLIC_KEY)
+      .then(() => alert('Message sent successfully!'), () => alert('Unable to send your message. Please email me directly.'));
+    event.currentTarget.reset();
+  };
+
+  return <main>
+    <header className="site-header">
+      <div className="nav-shell">
+        <a className="brand" href="#home" aria-label="Home">JK<span>.</span></a>
+        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation"><i className={menuOpen ? 'fas fa-xmark' : 'fas fa-bars'} /></button>
+        <nav className={menuOpen ? 'open' : ''} onClick={() => setMenuOpen(false)}>
+          <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+        </nav>
+        <a className="resume-link" href={resume} download>Download Resume</a>
+      </div>
+    </header>
+
+    <section className="hero" id="home">
+      <div className="hero-copy">
+        <p className="eyebrow">Hello, I&apos;m</p><h1>Kotni Jagadeesh</h1>
+        <h2>Software Engineer <span>|</span> Java &amp; Spring Boot Developer</h2>
+        <p className="lead">I build backend applications with Java, Spring Boot, and REST APIs.</p>
+        <div className="hero-actions"><a className="button primary" href="#projects">View Projects <i className="fas fa-arrow-right" /></a><a className="button secondary" href={resume} download><i className="fas fa-download" /> Download Resume</a></div>
+        <div className="socials"><a href="https://github.com/KotniJagadeesh20" target="_blank" rel="noreferrer" aria-label="GitHub"><i className="fab fa-github" /></a><a href="https://www.linkedin.com/in/jagadeesh-kotni-194a6b260" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin" /></a></div>
+      </div>
+      <div className="hero-art">
+        <div className="dot-field" /><div className="portrait"><img src={portrait} alt="Kotni Jagadeesh smiling" /></div>
+        <div className="tech-stack"><div><i className="fas fa-leaf" /><span><b>Spring Boot</b><small>Build. Secure. Scale.</small></span></div><div><i className="fas fa-cube" /><span><b>Microservices</b><small>Modular. Resilient.</small></span></div><div><i className="fab fa-aws" /><span><b>Cloud</b><small>Cloud for what&apos;s next.</small></span></div></div>
+      </div>
+    </section>
+
+    <section className="about-skills section-shell" id="about">
+      <div className="about-copy"><p className="eyebrow">About me</p><h2>Software engineer focused<br />on backend development</h2><p>Software engineer focused on backend development and distributed systems. Building with Java, Spring Boot, MySQL and Spring Security, while expanding my skills in microservices, Docker, AWS and system design.</p><div className="quick-info"><span><i className="fas fa-location-dot" /> Hyderabad, India</span><span><i className="fas fa-comment-dots" /> English, Telugu</span></div></div>
+      <div className="skills" id="skills"><p className="eyebrow">Technical skills</p>{Object.entries(skills).map(([group, items]) => <div className="skill-group" key={group}><h3>{group}</h3><div>{items.map(([icon, label]) => <span className="pill" key={label}><i className={icon} />{label}</span>)}</div></div>)}</div>
+    </section>
+
+    <section className="section-block" id="experience"><div className="section-shell"><p className="eyebrow">Experience</p><h2>My professional journey</h2><div className="timeline">
+      <article><time>July 2025 — Present</time><div><h3>Software Engineer — Picktime</h3><ul><li>Develop backend services and REST APIs with Java and Spring Boot.</li><li>Build database-driven applications with MySQL, JPA and Hibernate.</li><li>Debug, test and resolve production issues.</li></ul></div></article>
+      <article><time>December 2024 — June 2025</time><div><h3>Software Engineer Intern — Picktime</h3><ul><li>Contributed to Java backend features and bug fixes.</li><li>Worked with Spring Boot and learned engineering workflows.</li></ul></div></article>
+    </div></div></section>
+
+    <section className="section-block services"><div className="section-shell"><p className="eyebrow">Services</p><h2>What I Build</h2><div className="service-grid">{services.map(([icon, title, text]) => <article key={title}><i className={icon} /><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+
+    <section className="section-block" id="projects"><div className="section-shell"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Projects that turn ideas into products</h2></div><a href="https://github.com/KotniJagadeesh20" target="_blank" rel="noreferrer">View more projects <i className="fas fa-arrow-right" /></a></div><div className="projects-grid">{projects.map(project => <article className="project-card" key={project.title}><div className={`project-visual ${project.visual}`}><i className={project.visual === 'travel' ? 'fas fa-mountain-sun' : project.visual === 'learn' ? 'fas fa-circle-play' : 'fas fa-magnifying-glass'} /><strong>{project.words.map(word => <span key={word}>{word}</span>)}</strong></div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><a href={project.url} target="_blank" rel="noreferrer"><i className="fab fa-github" /> View on GitHub</a></article>)}</div></div></section>
+
+    <section className="section-block education" id="education"><div className="section-shell"><p className="eyebrow">Education</p><h2>My Education</h2><div className="education-grid"><article><i className="fas fa-graduation-cap" /><div><time>2019 – 2023</time><h3>University College of Engineering Narasaraopet</h3><p>CGPA 6.75</p></div></article><article><i className="fas fa-graduation-cap" /><div><time>2018 – 2019</time><h3>Gayatri Junior College</h3><p>CGPA 9.88</p></div></article><article><i className="fas fa-graduation-cap" /><div><time>2016 – 2017</time><h3>Holy-cross English Medium School</h3><p>CGPA 9.5</p></div></article></div></div></section>
+
+    <section className="contact" id="contact"><div className="section-shell contact-grid"><div><p className="eyebrow">Get in touch</p><h2>Let&apos;s build something<br />meaningful</h2><p>I&apos;m always open to discussing new opportunities, interesting projects or just tech in general.</p><a className="email" href="mailto:jagadeeshkotni20@gmail.com"><i className="fas fa-envelope" /> jagadeeshkotni20@gmail.com</a><div className="contact-meta"><span><i className="fas fa-location-dot" /> Hyderabad, India</span><a href="https://github.com/KotniJagadeesh20" aria-label="GitHub"><i className="fab fa-github" /></a><a href="https://www.linkedin.com/in/jagadeesh-kotni-194a6b260" aria-label="LinkedIn"><i className="fab fa-linkedin" /></a></div></div><form ref={form} onSubmit={sendEmail}><div><label>Name<input name="Name" placeholder="Your name" required /></label><label>Email<input type="email" name="Email" placeholder="your.email@example.com" required /></label></div><label>Message<textarea name="Message" placeholder="Tell me about your project or opportunity..." required /></label><button type="submit">Send Message</button></form></div></section>
+    <footer><div className="section-shell"><span>© 2026 Kotni Jagadeesh. Built with React.</span><span>Keep learning. Keep building. 🚀</span></div></footer>
+  </main>;
+};
+
+export default MyPortfolio;

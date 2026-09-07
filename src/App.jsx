@@ -1,17 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import My_Portifolio from './Components/My_Portifolio'
+import './App.css';
+import MyPortfolio from './Components/My_Portifolio';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <My_Portifolio/>
-    </>
-  )
+export default function App() {
+  return <MyPortfolio />;
 }
-
-export default App
