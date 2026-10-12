@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import '../Css/My_portifolio.css';
-import Image1 from '../assets/Images/Image35.jpg';
+import HomeHeroImage from '../assets/Images/HomeHero.png';
 import Image2 from '../assets/Images/Image18.jpg';
 import Resume from '../assets/Images/JagadeeshKotniResume.pdf';
 import Projectimg from '../assets/Images/projectimage.jpg';
@@ -15,11 +15,13 @@ const My_Portfolio = () => {
     menu.onclick = () => {
       menu.classList.toggle('fa-times');
       header.classList.toggle('active');
+      menu.setAttribute('aria-expanded', String(header.classList.contains('active')));
     };
 
     window.onscroll = () => {
       menu.classList.remove('fa-times');
       header.classList.remove('active');
+      menu.setAttribute('aria-expanded', 'false');
     };
 
     const cursor1 = document.querySelector('.cursor-1');
@@ -110,71 +112,105 @@ const My_Portfolio = () => {
     <div>
       <div className="cursor-1"></div>
       <div className="cursor-2"></div>
-      <div id="menu-bars" className="fas fa-bars"></div>
+      <button
+        id="menu-bars"
+        className="fas fa-bars"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      ></button>
 
       {/* Header section */}
       <header>
         <a href="#" className="logo">
-          Kotni<span> Jagadeesh</span>
+          JK<span>.</span>
         </a>
 
         <nav className="navbar">
-          <a href="#home">Home</a>
-          <a href="#about">About me</a>
-          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
           <a href="#experience">Experience</a>
+          <a href="#portfolio">Projects</a>
           <a href="#education">Education</a>
-          <a href="#portfolio">Portfolio</a>
           <a href="#contact">Contact</a>
         </nav>
 
-        <div className="follow">
-  <a
-    href="https://github.com/KotniJagadeesh20"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fab fa-github"
-  ></a>
-
-  <a
-    href="https://www.linkedin.com/in/jagadeesh-kotni-194a6b260"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fab fa-linkedin"
-  ></a>
-
-  <a
-    href="https://www.instagram.com/jagadeesh_kotni"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fab fa-instagram"
-  ></a>
-
-  <a
-    href="mailto:jagadeeshkotni20@gmail.com"
-    className="fas fa-envelope"
-  ></a>
-</div>
+        <a href={Resume} className="nav-resume" download>
+          Download Resume
+        </a>
       </header>
 
       {/* Home section */}
       <section className="home" id="home">
         <div className="content">
-          <span className="hi">Hi there</span>
-          <h3>
-            I am <span>Kotni Jagadeesh</span>
-          </h3>
+          <span className="hi">Hello, I&apos;m</span>
+          <h1>Kotni Jagadeesh</h1>
           <p className="info">Software Engineer | Java &amp; Spring Boot Developer</p>
           <p className="text">
-            Seeking excellence in the chosen professional field through self-motivation, hard work and
-            utilizing core skills required to effectively deliver the requirements of the position.
+            I build backend applications with Java, Spring Boot, and REST APIs.
           </p>
-          <a href="#about" className="btn">
-            about me
-          </a>
+          <div className="home-actions">
+            <a href="#portfolio" className="btn">
+              View Projects <i className="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href={Resume} className="btn btn-outline" download>
+              <i className="fas fa-download" aria-hidden="true"></i> Download Resume
+            </a>
+          </div>
+          <div className="home-socials">
+            <a
+              href="https://github.com/KotniJagadeesh20"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fab fa-github"
+              aria-label="GitHub"
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/jagadeesh-kotni-194a6b260"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fab fa-linkedin"
+              aria-label="LinkedIn"
+            ></a>
+            <a
+              href="https://www.instagram.com/jagadeesh_kotni"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fab fa-instagram"
+              aria-label="Instagram"
+            ></a>
+            <a
+              href="https://x.com/JKotni86757"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fab fa-x-twitter"
+              aria-label="X"
+            ></a>
+            <a
+              href="mailto:jagadeeshkotni20@gmail.com"
+              className="fas fa-envelope"
+              aria-label="Email Jagadeesh"
+            ></a>
+          </div>
         </div>
         <div className="image">
-          <img src={Image1} alt="Jagadeesh image" />
+          <div className="hero-photo">
+            <img src={HomeHeroImage} alt="Jagadeesh smiling at a cafe" />
+          </div>
+          <div className="hero-skills" aria-label="Featured skills">
+            <div className="hero-skill">
+              <i className="fas fa-leaf" aria-hidden="true"></i>
+              <div><strong>Spring Boot</strong><span>Build. Secure. Scale.</span></div>
+            </div>
+            <div className="hero-skill">
+              <i className="fas fa-cube" aria-hidden="true"></i>
+              <div><strong>Microservices</strong><span>Modular. Resilient.</span></div>
+            </div>
+            <div className="hero-skill">
+              <i className="fab fa-aws" aria-hidden="true"></i>
+              <div><strong>Cloud</strong><span>Cloud for what&apos;s next.</span></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -243,63 +279,64 @@ const My_Portfolio = () => {
           <span>My</span> Skills
         </h1>
 
-        <div className="skills-container">
+        <div className="skills-container" id="skills">
           <div className="skill-card">
             <h3>Languages</h3>
             <div className="skill-tags">
-              <span>Java</span>
-              <span>SQL</span>
-              <span>JavaScript</span>
+              <span><i className="fas fa-mug-hot" aria-hidden="true"></i>Java</span>
+              <span><i className="fas fa-database" aria-hidden="true"></i>SQL</span>
+              <span><i className="fab fa-js" aria-hidden="true"></i>JavaScript</span>
             </div>
           </div>
 
           <div className="skill-card">
             <h3>Backend</h3>
             <div className="skill-tags">
-              <span>Spring Boot</span>
-              <span>Spring MVC</span>
-              <span>Spring Security</span>
-              <span>REST APIs</span>
-              <span>Hibernate</span>
-              <span>JPA</span>
-              <span>JWT Authentication</span>
+              <span><i className="fas fa-leaf" aria-hidden="true"></i>Spring Boot</span>
+              <span><i className="fas fa-leaf" aria-hidden="true"></i>Spring MVC</span>
+              <span><i className="fas fa-shield-alt" aria-hidden="true"></i>Spring Security</span>
+              <span><i className="fas fa-cog" aria-hidden="true"></i>REST APIs</span>
+              <span><i className="fas fa-gem" aria-hidden="true"></i>Hibernate</span>
+              <span><i className="fas fa-database" aria-hidden="true"></i>JPA</span>
+              <span><i className="fas fa-asterisk" aria-hidden="true"></i>JWT Authentication</span>
+              <span><i className="fas fa-stream" aria-hidden="true"></i>Kafka</span>
             </div>
           </div>
 
           <div className="skill-card">
             <h3>Database</h3>
             <div className="skill-tags">
-              <span>MySQL</span>
+              <span><i className="fas fa-database" aria-hidden="true"></i>MySQL</span>
             </div>
           </div>
 
           <div className="skill-card">
             <h3>Cloud &amp; DevOps</h3>
             <div className="skill-tags">
-              <span>AWS</span>
-              <span>Docker</span>
-              <span>Git</span>
-              <span>GitHub</span>
+              <span><i className="fab fa-aws" aria-hidden="true"></i>AWS</span>
+              <span><i className="fab fa-docker" aria-hidden="true"></i>Docker</span>
+              <span><i className="fab fa-git-alt" aria-hidden="true"></i>Git</span>
+              <span><i className="fab fa-github" aria-hidden="true"></i>GitHub</span>
             </div>
           </div>
 
           <div className="skill-card">
             <h3>Architecture &amp; Concepts</h3>
             <div className="skill-tags">
-              <span>Microservices</span>
-              <span>System Design</span>
-              <span>OOP</span>
-              <span>Design Patterns</span>
-              <span>Data Structures</span>
-              <span>Algorithms</span>
-              <span>MVC Architecture</span>
+              <span><i className="fas fa-cube" aria-hidden="true"></i>Microservices</span>
+              <span><i className="fas fa-project-diagram" aria-hidden="true"></i>System Design</span>
+              <span><i className="fas fa-layer-group" aria-hidden="true"></i>OOP</span>
+              <span><i className="fas fa-puzzle-piece" aria-hidden="true"></i>Design Patterns</span>
+              <span><i className="fas fa-share-alt" aria-hidden="true"></i>Data Structures</span>
+              <span><i className="fas fa-exclamation-triangle" aria-hidden="true"></i>Algorithms</span>
+              <span><i className="fas fa-th-large" aria-hidden="true"></i>MVC Architecture</span>
             </div>
           </div>
           <div className="skill-card">
             <h3>AI</h3>
             <div className="skill-tags">
-              <span>Rag</span>
-              <span>Mcp</span>
+              <span><i className="fas fa-brain" aria-hidden="true"></i>Rag</span>
+              <span><i className="fas fa-magic" aria-hidden="true"></i>Mcp</span>
             </div>
           </div>
         </div>
@@ -432,6 +469,7 @@ const My_Portfolio = () => {
         <div className="box-container">
           <div className="box">
             <div className="content">
+              <i className="fas fa-graduation-cap education-icon" aria-hidden="true"></i>
               <span>2016-2017</span>
               <h3>Holy-cross English medium school</h3>
               <h3>CGPA : 9.5</h3>
@@ -439,6 +477,7 @@ const My_Portfolio = () => {
           </div>
           <div className="box">
             <div className="content">
+              <i className="fas fa-graduation-cap education-icon" aria-hidden="true"></i>
               <span>2018-2019</span>
               <h3>Gayatri Junior college</h3>
               <h3>CGPA : 9.88</h3>
@@ -446,6 +485,7 @@ const My_Portfolio = () => {
           </div>
           <div className="box">
             <div className="content">
+              <i className="fas fa-graduation-cap education-icon" aria-hidden="true"></i>
               <span>2019-2023</span>
               <h3>University college of Engineering Narasaraopet</h3>
               <h3>CGPA : 6.75</h3>
